@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { IoEyeOff, IoEye } from "react-icons/io5";
 
-type Props = {
+export type FormInputProps = {
   type: "text" | "email" | "password" | "tel";
   isPassword: boolean;
 };
 
-const FormInput = ({ type, isPassword }: Props) => {
+export const FormInput = ({ type, isPassword }: FormInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePassowrdVisibility = () => {
