@@ -15,7 +15,7 @@ export function SignupPage() {
         <div className="w-full mt-6 flex flex-col">
           <FormLabel color="blue" text="Seu nome Completo" isRequired={true}/>
         </div>
-        <FormInput type="text" isPassword={false}/>
+        <FormInput type="text" isPassword={true}/>
       </FormContainer>
     </FlexContainer>
   );

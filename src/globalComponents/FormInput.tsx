@@ -1,4 +1,5 @@
-import { FaBeer } from "react-icons/fa";
+import { useState } from "react";
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 type Props = {
   type: "text" | "email" | "password" | "tel";
@@ -6,17 +7,38 @@ type Props = {
 };
 
 const FormInput = ({ type, isPassword }: Props) => {
-  const setEye = isPassword ? "true" : "false";
-  setEye;
-  return (
-    <div className="flex items-center">
-      <input
-        type={type}
-        className="w-full p-2 border-2 border-gray-400 outline-none rounded-[4px]"
-      />
+  const [showPassword, setShowPassword] = useState(false);
 
-      <FaBeer className="ml-[-30px]"/>
-    </div>
+  const togglePassowrdVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  return (
+    <>
+      {isPassword && (
+        <div className="w-full flex items-center">
+          <input
+            type={showPassword ? "text" : "password"}
+            className="w-full p-2 border-2 border-gray-400 outline-none rounded-[4px]"
+          />
+          <button
+            className="ml-[-30px] cursor-pointer"
+            onClick={togglePassowrdVisibility}
+          >
+            {showPassword ? (
+              <IoEye size={23} color="#a9a9a9" />
+            ) : (
+              <IoEyeOff size={23} color="#a9a9a9" />
+            )}
+          </button>
+        </div>
+      )}
+      {!isPassword && (
+        <input
+          type={type}
+          className="w-full p-2 border-2 border-gray-400 outline-none rounded-[4px]"
+        />
+      )}
+    </>
   );
 };
 
