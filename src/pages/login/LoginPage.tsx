@@ -2,7 +2,7 @@ import { FlexContainer } from "../../globalComponents/FlexContainer";
 import { FormContainer } from "../../globalComponents/FormContainer";
 import Logo from "../../assets/img/logo.svg";
 import { InputList } from "./components/InputList";
-import { SignupQuestion } from "./components/SignupQuestion";
+import { FormQuestion } from "../../globalComponents/FormQuestion";
 import { Button } from "../../globalComponents/Button";
 
 export function LoginPage() {
@@ -20,7 +20,7 @@ export function LoginPage() {
         <main>
           <InputList />
           <div className="flex justify-end mt-2">
-            <SignupQuestion />
+            <FormQuestion type="login"/>
           </div>
         </main>
         <footer className="flex justify-center mt-8">
