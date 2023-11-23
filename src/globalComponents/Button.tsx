@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 type ButtonProps = {
   variants: "signup" | "login" | "newLead" | "save" | "cancel";
 };
@@ -7,6 +9,7 @@ export const Button = ({ variants }: ButtonProps) => {
     signup: {
       text: "Criar conta",
       style: "bg-green-500 text-white font-bold",
+      href: "/login",
     },
     login: {
       text: "Entrar",
@@ -27,10 +30,11 @@ export const Button = ({ variants }: ButtonProps) => {
   };
   let chosedButtonStyle;
   let chosedButtonText;
-
+  let href = "";
   if (variants === "signup") {
     chosedButtonStyle = buttonsConfig.signup.style;
     chosedButtonText = buttonsConfig.signup.text;
+    href = buttonsConfig.signup.href;
   } else if (variants === "login") {
     chosedButtonStyle = buttonsConfig.login.style;
     chosedButtonText = buttonsConfig.login.text;
@@ -45,8 +49,8 @@ export const Button = ({ variants }: ButtonProps) => {
     chosedButtonText = buttonsConfig.cancel.text;
   }
   return (
-    <button className={`${chosedButtonStyle} px-6 py-2 rounded-md`}>
+    <Link href={href} className={`${chosedButtonStyle} px-6 py-2 rounded-md`}>
       {chosedButtonText}
-    </button>
+    </Link>
   );
 };

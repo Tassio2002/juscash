@@ -20,11 +20,11 @@ export function LoginPage() {
         <main>
           <InputList />
           <div className="flex justify-end mt-2">
-            <FormQuestion type="login"/>
+            <FormQuestion type="login" />
           </div>
         </main>
         <footer className="flex justify-center mt-8">
-            <Button variants="login"/>
+          <Button variants="login"></Button>
         </footer>
       </FormContainer>
     </FlexContainer>

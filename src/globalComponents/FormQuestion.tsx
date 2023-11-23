@@ -1,31 +1,37 @@
+import { Link } from "wouter";
 type FormProps = {
   type: "signup" | "login";
 };
 
 export const FormQuestion = ({ type }: FormProps) => {
-  const texts = {
+  const questionConfig = {
     signup: {
       question: "Já possui uma conta?",
       linkText: "Fazer o login",
+      linkHref: "/login",
     },
     login: {
       question: "Ainda não possui uma conta?",
       linkText: "Cadastre-se",
+      linkHref: "/",
     },
   };
   let question;
   let linkText;
+  let linkHref = "";
   if (type === "signup") {
-    question = texts.signup.question;
-    linkText = texts.signup.linkText;
+    question = questionConfig.signup.question;
+    linkText = questionConfig.signup.linkText;
+    linkHref = questionConfig.signup.linkHref;
   } else if (type === "login") {
-    question = texts.login.question;
-    linkText = texts.login.linkText;
+    question = questionConfig.login.question;
+    linkText = questionConfig.login.linkText;
+    linkHref = questionConfig.login.linkHref;
   }
   return (
     <div className="flex gap-1 text-xs text-[#112047]">
       <span>{question}</span>
-      <a href="/login">{linkText}</a>
+      <Link href={linkHref}>{linkText}</Link>
     </div>
   );
 };
