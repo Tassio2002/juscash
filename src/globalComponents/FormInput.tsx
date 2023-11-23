@@ -1,44 +1,13 @@
-import { useState } from "react";
-import { IoEyeOff, IoEye } from "react-icons/io5";
-
 export type FormInputProps = {
-  type: "text" | "email" | "password" | "tel";
-  isPassword: boolean;
+  type: "text" | "email" | "tel";
 };
 
-export const FormInput = ({ type, isPassword }: FormInputProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePassowrdVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+export const FormInput = ({ type }: FormInputProps) => {
   return (
-    <>
-      {isPassword && (
-        <div className="w-full flex items-center">
-          <input
-            type={showPassword ? "text" : "password"}
-            className="w-full p-2 border-2 border-gray-400 outline-none rounded-[4px]"
-          />
-          <button
-            className="ml-[-30px] cursor-pointer"
-            onClick={togglePassowrdVisibility}
-          >
-            {showPassword ? (
-              <IoEye size={23} color="#a9a9a9" />
-            ) : (
-              <IoEyeOff size={23} color="#a9a9a9" />
-            )}
-          </button>
-        </div>
-      )}
-      {!isPassword && (
-        <input
-          type={type}
-          className="w-full p-2 border-2 border-gray-400 outline-none rounded-[4px]"
-        />
-      )}
-    </>
+    <input
+      type={type}
+      className="w-full p-2 border-2 border-gray-400 outline-none rounded-[4px]"
+    />
   );
 };
 
