@@ -5,7 +5,7 @@ import { InputList } from "./components/InputList";
 import { FormQuestion } from "../../globalComponents/FormQuestion";
 import { Button } from "../../globalComponents/Button";
 
-export function SignupPage() {
+export function LoginPage() {
   return (
     <FlexContainer>
       <FormContainer>
@@ -20,11 +20,11 @@ export function SignupPage() {
         <main>
           <InputList />
           <div className="flex justify-end mt-2">
-            <FormQuestion type="signup" />
+            <FormQuestion type="login"/>
           </div>
         </main>
         <footer className="flex justify-center mt-8">
-          <Button variants="signup" />
+            <Button variants="login"/>
         </footer>
       </FormContainer>
     </FlexContainer>
