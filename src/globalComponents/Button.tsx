@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { GoPlus } from "react-icons/go";
 
 type ButtonProps = {
   variants: "signup" | "login" | "newLead" | "save" | "cancel";
@@ -17,7 +18,7 @@ export const Button = ({ variants }: ButtonProps) => {
     },
     newLead: {
       text: "Novo Lead",
-      style: "bg-blue-400 text-white",
+      style: "bg-[#39b3c9] text-white",
     },
     save: {
       text: "Salvar",
@@ -49,8 +50,26 @@ export const Button = ({ variants }: ButtonProps) => {
     chosedButtonText = buttonsConfig.cancel.text;
   }
   return (
-    <Link href={href} className={`${chosedButtonStyle} px-6 py-2 rounded-md`}>
-      {chosedButtonText}
-    </Link>
+    <>
+      {variants === "newLead" ? (
+        <div
+          className={`${chosedButtonStyle} px-6 py-2 rounded-md flex justify-center items-center gap-1`}
+        >
+          <GoPlus />
+          <Link
+            href={href}
+          >
+            {chosedButtonText}
+          </Link>
+        </div>
+      ) : (
+        <Link
+          href={href}
+          className={`${chosedButtonStyle} px-6 py-2 rounded-md`}
+        >
+          {chosedButtonText}
+        </Link>
+      )}
+    </>
   );
 };
