@@ -23,7 +23,7 @@ export const LeadsListPage = () => {
   return (
     <>
       <ModalContainer isOpen={isOpen}>
-        <NewLeadForm onCLickEvent={handleCloseModal} />
+        <NewLeadForm onCLickEvent={handleCloseModal} variants={"disabled"} />
       </ModalContainer>
       <FlexContainer display={modalIsOpen}>
         <Container>
