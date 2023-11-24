@@ -16,6 +16,7 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
     login: {
       text: "Entrar",
       style: "bg-green-500 text-white font-bold",
+      href: "/leads",
     },
     newLead: {
       text: "Novo Lead",
@@ -40,6 +41,7 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
   } else if (variants === "login") {
     chosedButtonStyle = buttonsConfig.login.style;
     chosedButtonText = buttonsConfig.login.text;
+    href = buttonsConfig.login.href;
   } else if (variants === "newLead") {
     chosedButtonStyle = buttonsConfig.newLead.style;
     chosedButtonText = buttonsConfig.newLead.text;
