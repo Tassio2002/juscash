@@ -3,9 +3,10 @@ import { GoPlus } from "react-icons/go";
 
 type ButtonProps = {
   variants: "signup" | "login" | "newLead" | "save" | "cancel";
+  onCLickEvent?: () => void;
 };
 
-export const Button = ({ variants }: ButtonProps) => {
+export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
   const buttonsConfig = {
     signup: {
       text: "Criar conta",
@@ -26,7 +27,7 @@ export const Button = ({ variants }: ButtonProps) => {
     },
     cancel: {
       text: "Cancelar",
-      style: "bg-transparent text-gray-500 border-1 border-gray-500",
+      style: "bg-transparent text-gray-500 border border-gray-500",
     },
   };
   let chosedButtonStyle;
@@ -53,19 +54,16 @@ export const Button = ({ variants }: ButtonProps) => {
     <>
       {variants === "newLead" ? (
         <div
-          className={`${chosedButtonStyle} px-6 py-2 rounded-md flex justify-center items-center gap-1`}
+          className={`${chosedButtonStyle} px-6 py-2 rounded-md flex justify-center items-center gap-1 cursor-pointer`}
+          onClick={onCLickEvent}
         >
           <GoPlus />
-          <Link
-            href={href}
-          >
-            {chosedButtonText}
-          </Link>
+          <Link href={href}>{chosedButtonText}</Link>
         </div>
       ) : (
         <Link
           href={href}
-          className={`${chosedButtonStyle} px-6 py-2 rounded-md`}
+          className={`${chosedButtonStyle} px-6 py-2 rounded-md cursor-pointer`}
         >
           {chosedButtonText}
         </Link>

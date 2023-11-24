@@ -8,7 +8,7 @@ import { Button } from "../../globalComponents/Button";
 export function SignupPage() {
   return (
     <FlexContainer>
-      <FormContainer>
+      <FormContainer >
         <header className="w-full flex justify-center mb-8">
           <img
             src={Logo}
