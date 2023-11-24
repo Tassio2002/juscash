@@ -3,6 +3,7 @@ import { Container } from "./components/Container";
 import Logo from "../../assets/img/logo.svg";
 import { Button } from "../../globalComponents/Button";
 import { ListHeader } from "./components/ListHeader";
+import { LeadsDrag } from "./components/LeadsDrag";
 
 export const LeadsListPage = () => {
   return (
@@ -20,6 +21,7 @@ export const LeadsListPage = () => {
                 <Button variants="newLead"/>
             </div>
             <ListHeader />
+            <LeadsDrag />
         </main>
       </Container>
     </FlexContainer>
