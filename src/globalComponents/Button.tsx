@@ -66,6 +66,7 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
         <Link
           href={href}
           className={`${chosedButtonStyle} px-6 py-2 rounded-md cursor-pointer`}
+          onClick={onCLickEvent}
         >
           {chosedButtonText}
         </Link>
