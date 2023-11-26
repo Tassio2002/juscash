@@ -3,20 +3,27 @@ import { GoPlus } from "react-icons/go";
 
 type ButtonProps = {
   variants: "signup" | "login" | "newLead" | "save" | "cancel";
+  shouldNavigate: boolean;
   onCLickEvent?: () => void;
 };
 
-export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
+export const Button = ({
+  variants,
+  shouldNavigate,
+  onCLickEvent,
+}: ButtonProps) => {
   const buttonsConfig = {
     signup: {
       text: "Criar conta",
       style: "bg-green-500 text-white font-bold",
-      href: "/login",
+      actualHref: "/",
+      hrefToNavigate: "/login",
     },
     login: {
       text: "Entrar",
       style: "bg-green-500 text-white font-bold",
-      href: "/leads",
+      actualHref: "/login",
+      hrefToNavigate: "/leads",
     },
     newLead: {
       text: "Novo Lead",
@@ -34,14 +41,29 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
   let chosedButtonStyle;
   let chosedButtonText;
   let href = "";
+
+  const shouldNavigateVerify = (actualHref: string, hrefToNavigate: string) => {
+    if (shouldNavigate === false) {
+      href = actualHref;
+    } else {
+      href = hrefToNavigate;
+    }
+  };
+
   if (variants === "signup") {
     chosedButtonStyle = buttonsConfig.signup.style;
     chosedButtonText = buttonsConfig.signup.text;
-    href = buttonsConfig.signup.href;
+    shouldNavigateVerify(
+      buttonsConfig.signup.actualHref,
+      buttonsConfig.signup.hrefToNavigate
+    );
   } else if (variants === "login") {
     chosedButtonStyle = buttonsConfig.login.style;
     chosedButtonText = buttonsConfig.login.text;
-    href = buttonsConfig.login.href;
+    shouldNavigateVerify(
+      buttonsConfig.login.actualHref,
+      buttonsConfig.login.hrefToNavigate
+    );
   } else if (variants === "newLead") {
     chosedButtonStyle = buttonsConfig.newLead.style;
     chosedButtonText = buttonsConfig.newLead.text;
@@ -52,6 +74,7 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
     chosedButtonStyle = buttonsConfig.cancel.style;
     chosedButtonText = buttonsConfig.cancel.text;
   }
+
   return (
     <>
       {variants === "newLead" ? (
@@ -66,6 +89,7 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
         <Link
           href={href}
           className={`${chosedButtonStyle} px-6 py-2 rounded-md cursor-pointer`}
+          onClick={onCLickEvent}
         >
           {chosedButtonText}
         </Link>
