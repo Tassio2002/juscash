@@ -8,6 +8,7 @@ import { Button } from "../../globalComponents/Button";
 import validatePassword from "../../services/validatePassword";
 import validateConfirmPassword from "../../services/validateConfirmPassword";
 import validateUsername from "../../services/validateUsername";
+import validateEmail from "../../services/validateEmail";
 
 interface FormData {
   username: string;
@@ -41,16 +42,19 @@ export function SignupPage() {
   const formValidate = (): boolean => {
     // adcionar validação de nome e email
     const isValidUsername = validateUsername(formData.username);
-    console.log(
-      "🚀 ~ file: SignupPage.tsx:44 ~ formValidate ~ isValidUsername:",
-      isValidUsername
-    );
+    const isValidEmail = validateEmail(formData.email);
     const isValidPassword = validatePassword(formData.password);
     const isValidConfirmPassword = validateConfirmPassword(
       formData.password,
       formData.confirmPassword
     );
-    if (isValidUsername && isValidPassword && isValidConfirmPassword) {
+
+    const isAllInputsValid: boolean =
+      isValidUsername &&
+      isValidEmail &&
+      isValidPassword &&
+      isValidConfirmPassword;
+    if (isAllInputsValid) {
       return true;
     }
     return false;
