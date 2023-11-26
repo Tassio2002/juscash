@@ -7,9 +7,20 @@ import { ListHeader } from "./components/ListHeader";
 import { LeadsDrag } from "./components/LeadsDrag";
 import { ModalContainer } from "../../globalComponents/ModalContainer";
 import { NewLeadForm } from "../../globalComponents/NewLeadForm";
+interface FormData {
+  username: string;
+  email: string;
+  tel: string;
+}
 
 export const LeadsListPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    username: "",
+    email: "",
+    tel: "",
+  });
+
   let modalIsOpen;
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -20,10 +31,31 @@ export const LeadsListPage = () => {
   };
 
   isOpen ? (modalIsOpen = "hidden") : (modalIsOpen = "false");
+
+  const handleInputChange = (name: string, value: string) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = () => {
+    localStorage.setItem("leadData", JSON.stringify(formData));
+  };
+
   return (
     <>
       <ModalContainer isOpen={isOpen}>
-        <NewLeadForm onCLickEvent={handleCloseModal} variants={"enabled"} />
+        <NewLeadForm
+          onCLickEvent={handleCloseModal}
+          cancelCLickEvent={handleCloseModal}
+          saveCLickEvent={handleSubmit}
+          variants={"enabled"}
+          onInputChange={handleInputChange}
+          username={formData.username}
+          email={formData.email}
+          tel={formData.tel}
+        />
       </ModalContainer>
       <FlexContainer display={modalIsOpen}>
         <Container>

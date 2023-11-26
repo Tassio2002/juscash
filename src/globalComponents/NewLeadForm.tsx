@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { FormContainer } from "./FormContainer";
 import { IoClose } from "react-icons/io5";
 import { FormLabel } from "./FormLabel";
@@ -6,10 +7,36 @@ import { Button } from "./Button";
 import { Checkbox } from "./Checkbox";
 type NewLeadFormProps = {
   variants: "enabled" | "disabled";
+  username: string;
+  email: string;
+  tel: string;
   onCLickEvent: () => void;
+  saveCLickEvent: () => void;
+  cancelCLickEvent: () => void;
+  onInputChange: (name: string, value: string) => void;
 };
 
-export const NewLeadForm = ({ variants, onCLickEvent }: NewLeadFormProps) => {
+export const NewLeadForm = ({
+  variants,
+  username,
+  email,
+  tel,
+  onCLickEvent,
+  saveCLickEvent,
+  cancelCLickEvent,
+  onInputChange,
+}: NewLeadFormProps) => {
+  const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onInputChange("username", event.target.value);
+  };
+
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onInputChange("email", event.target.value);
+  };
+  const handleTelChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onInputChange("tel", event.target.value);
+  };
+
   return (
     <>
       {variants === "enabled" ? (
@@ -31,11 +58,19 @@ export const NewLeadForm = ({ variants, onCLickEvent }: NewLeadFormProps) => {
                   color="gray"
                   isRequired={true}
                 />
-                <FormInput type="text" />
+                <FormInput
+                  type="text"
+                  value={username}
+                  onChange={handleUsernameChange}
+                />
                 <FormLabel text="E-mail" color="gray" isRequired={true} />
-                <FormInput type="email" />
+                <FormInput
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
                 <FormLabel text="Telefone" color="gray" isRequired={true} />
-                <FormInput type="tel" />
+                <FormInput type="tel" value={tel} onChange={handleTelChange} />
               </div>
               <div>
                 <h2>Oportunidades</h2>
@@ -47,8 +82,8 @@ export const NewLeadForm = ({ variants, onCLickEvent }: NewLeadFormProps) => {
               </div>
             </main>
             <footer className="flex justify-end gap-2">
-              <Button variants="cancel" />
-              <Button variants="save" />
+              <Button variants="cancel" onCLickEvent={cancelCLickEvent} />
+              <Button variants="save" onCLickEvent={saveCLickEvent} />
             </footer>
           </div>
         </FormContainer>
@@ -87,7 +122,7 @@ export const NewLeadForm = ({ variants, onCLickEvent }: NewLeadFormProps) => {
               </div>
             </main>
             <footer className="flex justify-end gap-2">
-              <Button variants="cancel" />
+              <Button variants="cancel" onCLickEvent={onCLickEvent} />
               <Button variants="save" />
             </footer>
           </div>
