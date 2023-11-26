@@ -7,6 +7,7 @@ import { FormQuestion } from "../../globalComponents/FormQuestion";
 import { Button } from "../../globalComponents/Button";
 import validatePassword from "../../services/validatePassword";
 import validateConfirmPassword from "../../services/validateConfirmPassword";
+import validateUsername from "../../services/validateUsername";
 
 interface FormData {
   username: string;
@@ -39,12 +40,17 @@ export function SignupPage() {
   };
   const formValidate = (): boolean => {
     // adcionar validação de nome e email
+    const isValidUsername = validateUsername(formData.username);
+    console.log(
+      "🚀 ~ file: SignupPage.tsx:44 ~ formValidate ~ isValidUsername:",
+      isValidUsername
+    );
     const isValidPassword = validatePassword(formData.password);
     const isValidConfirmPassword = validateConfirmPassword(
       formData.password,
       formData.confirmPassword
     );
-    if (isValidPassword && isValidConfirmPassword) {
+    if (isValidUsername && isValidPassword && isValidConfirmPassword) {
       return true;
     }
     return false;
