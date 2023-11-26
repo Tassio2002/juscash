@@ -39,6 +39,7 @@ export function SignupPage() {
       [name]: value,
     });
   };
+
   const formValidate = (): boolean => {
     const isValidUsername = validateUsername(formData.username);
     const isValidEmail = validateEmail(formData.email);

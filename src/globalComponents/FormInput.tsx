@@ -3,8 +3,8 @@ import { ChangeEvent } from "react";
 export type FormInputProps = {
   type: "text" | "email" | "tel";
   isDisabled?: boolean;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const FormInput = ({

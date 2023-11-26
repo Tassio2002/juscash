@@ -3,7 +3,7 @@ import { GoPlus } from "react-icons/go";
 
 type ButtonProps = {
   variants: "signup" | "login" | "newLead" | "save" | "cancel";
-  shouldNavigate: boolean;
+  shouldNavigate?: boolean;
   onCLickEvent?: () => void;
 };
 

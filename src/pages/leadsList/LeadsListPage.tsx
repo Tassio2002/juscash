@@ -7,9 +7,23 @@ import { ListHeader } from "./components/ListHeader";
 import { LeadsDrag } from "./components/LeadsDrag";
 import { ModalContainer } from "../../globalComponents/ModalContainer";
 import { NewLeadForm } from "../../globalComponents/NewLeadForm";
+import validateUsername from "../../services/validateUsername";
+import validateEmail from "../../services/validateEmail";
+import validateTel from "../../services/validateTel";
+interface FormData {
+  username: string;
+  email: string;
+  tel: string;
+}
 
 export const LeadsListPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    username: "",
+    email: "",
+    tel: "",
+  });
+
   let modalIsOpen;
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -20,10 +34,48 @@ export const LeadsListPage = () => {
   };
 
   isOpen ? (modalIsOpen = "hidden") : (modalIsOpen = "false");
+
+  const handleInputChange = (name: string, value: string) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const formValidate = (): boolean => {
+    const isValidUsername = validateUsername(formData.username);
+    const isValidEmail = validateEmail(formData.email);
+    const isValidTel = validateTel(formData.tel);
+
+    const isAllInputsValid: boolean =
+      isValidUsername && isValidEmail && isValidTel;
+    if (isAllInputsValid) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleSubmit = () => {
+    if (formValidate() === true) {
+      localStorage.setItem("leadData", JSON.stringify(formData));
+    } else {
+      console.error("Invalid lead information");
+    }
+  };
+
   return (
     <>
       <ModalContainer isOpen={isOpen}>
-        <NewLeadForm onCLickEvent={handleCloseModal} variants={"enabled"} />
+        <NewLeadForm
+          onCLickEvent={handleCloseModal}
+          cancelCLickEvent={handleCloseModal}
+          saveCLickEvent={handleSubmit}
+          variants={"enabled"}
+          onInputChange={handleInputChange}
+          username={formData.username}
+          email={formData.email}
+          tel={formData.tel}
+        />
       </ModalContainer>
       <FlexContainer display={modalIsOpen}>
         <Container>
