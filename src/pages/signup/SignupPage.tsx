@@ -22,10 +22,6 @@ export function SignupPage() {
     password: "",
     confirmPassword: "",
   });
-  console.log(
-    "🚀 ~ file: SignupPage.tsx:23 ~ SignupPage ~ formData:",
-    formData
-  );
 
   const handleInputChange = (name: string, value: string) => {
     setFormData({
@@ -35,12 +31,15 @@ export function SignupPage() {
   };
 
   const handleSubmit = () => {
-    const isValidPassword = validatePassword(formData.password)
-    const isValidConfirmPassword = validateConfirmPassword(formData.password, formData.confirmPassword)
+    const isValidPassword = validatePassword(formData.password);
+    const isValidConfirmPassword = validateConfirmPassword(
+      formData.password,
+      formData.confirmPassword
+    );
     if (isValidPassword && isValidConfirmPassword) {
-      localStorage.setItem("userData", JSON.stringify(formData))
+      localStorage.setItem("userData", JSON.stringify(formData));
     }
-    console.error("Invalid confirm password")
+    console.error("Invalid confirm password");
   };
 
   return (
