@@ -40,7 +40,6 @@ export function SignupPage() {
     });
   };
   const formValidate = (): boolean => {
-    // adcionar validação de nome e email
     const isValidUsername = validateUsername(formData.username);
     const isValidEmail = validateEmail(formData.email);
     const isValidPassword = validatePassword(formData.password);

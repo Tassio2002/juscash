@@ -41,23 +41,29 @@ export const Button = ({
   let chosedButtonStyle;
   let chosedButtonText;
   let href = "";
+
+  const shouldNavigateVerify = (actualHref: string, hrefToNavigate: string) => {
+    if (shouldNavigate === false) {
+      href = actualHref;
+    } else {
+      href = hrefToNavigate;
+    }
+  };
+
   if (variants === "signup") {
     chosedButtonStyle = buttonsConfig.signup.style;
     chosedButtonText = buttonsConfig.signup.text;
-    //refatorar if
-    if (shouldNavigate === false) {
-      href = buttonsConfig.signup.actualHref;
-    } else {
-      href = buttonsConfig.signup.hrefToNavigate;
-    }
+    shouldNavigateVerify(
+      buttonsConfig.signup.actualHref,
+      buttonsConfig.signup.hrefToNavigate
+    );
   } else if (variants === "login") {
     chosedButtonStyle = buttonsConfig.login.style;
     chosedButtonText = buttonsConfig.login.text;
-    if (shouldNavigate === false) {
-      href = buttonsConfig.login.actualHref;
-    } else {
-      href = buttonsConfig.login.hrefToNavigate;
-    }
+    shouldNavigateVerify(
+      buttonsConfig.login.actualHref,
+      buttonsConfig.login.hrefToNavigate
+    );
   } else if (variants === "newLead") {
     chosedButtonStyle = buttonsConfig.newLead.style;
     chosedButtonText = buttonsConfig.newLead.text;
