@@ -3,20 +3,27 @@ import { GoPlus } from "react-icons/go";
 
 type ButtonProps = {
   variants: "signup" | "login" | "newLead" | "save" | "cancel";
+  shouldNavigate: boolean;
   onCLickEvent?: () => void;
 };
 
-export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
+export const Button = ({
+  variants,
+  shouldNavigate,
+  onCLickEvent,
+}: ButtonProps) => {
   const buttonsConfig = {
     signup: {
       text: "Criar conta",
       style: "bg-green-500 text-white font-bold",
-      href: "/login",
+      actualHref: "/",
+      hrefToNavigate: "/login",
     },
     login: {
       text: "Entrar",
       style: "bg-green-500 text-white font-bold",
-      href: "/leads",
+      actualHref: "/login",
+      hrefToNavigate: "/leads",
     },
     newLead: {
       text: "Novo Lead",
@@ -37,11 +44,20 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
   if (variants === "signup") {
     chosedButtonStyle = buttonsConfig.signup.style;
     chosedButtonText = buttonsConfig.signup.text;
-    href = buttonsConfig.signup.href;
+    //refatorar if
+    if (shouldNavigate === false) {
+      href = buttonsConfig.signup.actualHref;
+    } else {
+      href = buttonsConfig.signup.hrefToNavigate;
+    }
   } else if (variants === "login") {
     chosedButtonStyle = buttonsConfig.login.style;
     chosedButtonText = buttonsConfig.login.text;
-    href = buttonsConfig.login.href;
+    if (shouldNavigate === false) {
+      href = buttonsConfig.login.actualHref;
+    } else {
+      href = buttonsConfig.login.hrefToNavigate;
+    }
   } else if (variants === "newLead") {
     chosedButtonStyle = buttonsConfig.newLead.style;
     chosedButtonText = buttonsConfig.newLead.text;
@@ -52,6 +68,7 @@ export const Button = ({ variants, onCLickEvent }: ButtonProps) => {
     chosedButtonStyle = buttonsConfig.cancel.style;
     chosedButtonText = buttonsConfig.cancel.text;
   }
+
   return (
     <>
       {variants === "newLead" ? (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlexContainer } from "../../globalComponents/FlexContainer";
 import { FormContainer } from "../../globalComponents/FormContainer";
 import Logo from "../../assets/img/logo.svg";
@@ -16,6 +16,8 @@ interface FormData {
 }
 
 export function SignupPage() {
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+
   const [formData, setFormData] = useState<FormData>({
     username: "",
     email: "",
@@ -23,20 +25,34 @@ export function SignupPage() {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+    const isFormValid = formValidate();
+    if (isFormValid === true) {
+      setShouldNavigate(true);
+    }
+  }, [formData]);
+
   const handleInputChange = (name: string, value: string) => {
     setFormData({
       ...formData,
       [name]: value,
     });
   };
-
-  const handleSubmit = () => {
+  const formValidate = (): boolean => {
+    // adcionar validação de nome e email
     const isValidPassword = validatePassword(formData.password);
     const isValidConfirmPassword = validateConfirmPassword(
       formData.password,
       formData.confirmPassword
     );
     if (isValidPassword && isValidConfirmPassword) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleSubmit = () => {
+    if (formValidate() === true) {
       localStorage.setItem("userData", JSON.stringify(formData));
     }
     console.error("Invalid confirm password");
@@ -66,7 +82,11 @@ export function SignupPage() {
           </div>
         </main>
         <footer className="flex justify-center mt-8">
-          <Button variants="signup" onCLickEvent={handleSubmit} />
+          <Button
+            variants="signup"
+            onCLickEvent={handleSubmit}
+            shouldNavigate={shouldNavigate}
+          />
         </footer>
       </FormContainer>
     </FlexContainer>

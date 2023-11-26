@@ -66,7 +66,11 @@ export function LoginPage() {
           </div>
         </main>
         <footer className="flex justify-center mt-8">
-          <Button variants="login" onCLickEvent={loginValidate}></Button>
+          <Button
+            variants="login"
+            onCLickEvent={loginValidate}
+            shouldNavigate={false}
+          ></Button>
         </footer>
       </FormContainer>
     </FlexContainer>
