@@ -5,6 +5,8 @@ import Logo from "../../assets/img/logo.svg";
 import { InputList } from "./components/InputList";
 import { FormQuestion } from "../../globalComponents/FormQuestion";
 import { Button } from "../../globalComponents/Button";
+import validatePassword from "../../services/validatePassword";
+import validateConfirmPassword from "../../services/validateConfirmPassword";
 
 interface FormData {
   username: string;
@@ -33,9 +35,12 @@ export function SignupPage() {
   };
 
   const handleSubmit = () => {
-    localStorage.setItem("userData", JSON.stringify(formData));
-    const data = localStorage.getItem("userData")
-    console.log("🚀 ~ file: SignupPage.tsx:38 ~ handleSubmit ~ data:", data)
+    const isValidPassword = validatePassword(formData.password)
+    const isValidConfirmPassword = validateConfirmPassword(formData.password, formData.confirmPassword)
+    if (isValidPassword && isValidConfirmPassword) {
+      localStorage.setItem("userData", JSON.stringify(formData))
+    }
+    console.error("Invalid confirm password")
   };
 
   return (
