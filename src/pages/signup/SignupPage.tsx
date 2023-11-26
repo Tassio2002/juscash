@@ -17,7 +17,6 @@ interface FormData {
 
 export function SignupPage() {
   const [shouldNavigate, setShouldNavigate] = useState(false);
-
   const [formData, setFormData] = useState<FormData>({
     username: "",
     email: "",

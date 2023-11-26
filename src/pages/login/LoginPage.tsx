@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlexContainer } from "../../globalComponents/FlexContainer";
 import { FormContainer } from "../../globalComponents/FormContainer";
 import Logo from "../../assets/img/logo.svg";
@@ -12,10 +12,17 @@ interface FormData {
   password: string;
 }
 export function LoginPage() {
+  const [shouldNavigate, setShouldNavigate] = useState(false);
   const [loginFormData, setLoginFormData] = useState<FormData>({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    const isFormValid = loginValidate();
+    if (isFormValid === true) {
+      setShouldNavigate(true);
+    }
+  }, [loginFormData]);
 
   const loginValidate = () => {
     const userData = localStorage.getItem("userData");
@@ -33,9 +40,9 @@ export function LoginPage() {
     );
 
     if (userExists) {
-      alert("sim");
+      return true;
     }
-    alert("Não");
+    return false;
   };
 
   const handleInputChange = (name: string, value: string) => {
@@ -69,7 +76,7 @@ export function LoginPage() {
           <Button
             variants="login"
             onCLickEvent={loginValidate}
-            shouldNavigate={false}
+            shouldNavigate={shouldNavigate}
           ></Button>
         </footer>
       </FormContainer>
