@@ -7,6 +7,9 @@ import { ListHeader } from "./components/ListHeader";
 import { LeadsDrag } from "./components/LeadsDrag";
 import { ModalContainer } from "../../globalComponents/ModalContainer";
 import { NewLeadForm } from "../../globalComponents/NewLeadForm";
+import validateUsername from "../../services/validateUsername";
+import validateEmail from "../../services/validateEmail";
+import validateTel from "../../services/validateTel";
 interface FormData {
   username: string;
   email: string;
@@ -39,8 +42,25 @@ export const LeadsListPage = () => {
     });
   };
 
+  const formValidate = (): boolean => {
+    const isValidUsername = validateUsername(formData.username);
+    const isValidEmail = validateEmail(formData.email);
+    const isValidTel = validateTel(formData.tel);
+
+    const isAllInputsValid: boolean =
+      isValidUsername && isValidEmail && isValidTel;
+    if (isAllInputsValid) {
+      return true;
+    }
+    return false;
+  };
+
   const handleSubmit = () => {
-    localStorage.setItem("leadData", JSON.stringify(formData));
+    if (formValidate() === true) {
+      localStorage.setItem("leadData", JSON.stringify(formData));
+    } else {
+      console.error("Invalid lead information");
+    }
   };
 
   return (
