@@ -11,7 +11,7 @@ type NewLeadFormProps = {
   email: string;
   tel: string;
   onCLickEvent: () => void;
-  saveCLickEvent: () => void;
+  saveCLickEvent?: () => void;
   cancelCLickEvent: () => void;
   onInputChange: (name: string, value: string) => void;
 };
