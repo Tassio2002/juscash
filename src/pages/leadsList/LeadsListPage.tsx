@@ -10,9 +10,7 @@ import { NewLeadForm } from "../../globalComponents/NewLeadForm";
 import validateUsername from "../../services/validateUsername";
 import validateEmail from "../../services/validateEmail";
 import validateTel from "../../services/validateTel";
-import uuid from "react-uuid";
 interface FormData {
-  id: string;
   username: string;
   email: string;
   tel: string;
@@ -20,58 +18,26 @@ interface FormData {
 
 export const LeadsListPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenView, setIsOpenView] = useState(false);
   const [formData, setFormData] = useState<FormData>({
-    id: "",
     username: "",
     email: "",
     tel: "",
   });
-  const [leadData, setLeadData] = useState<FormData>({
-    id: "",
-    username: "",
-    email: "",
-    tel: "",
-  });
-
-  const [leadsArr, setLeadsArr] = useState<FormData[]>([]);
-  const getLeads = localStorage.getItem("leadData");
-  let leadsList;
-  if (getLeads) {
-    leadsList = JSON.parse(getLeads);
-  } else {
-    leadsList = [];
-  }
 
   let modalIsOpen;
   const handleOpenModal = () => {
     setIsOpen(true);
   };
-  const handleOpenViewModal = (id: string) => {
-    const actualLead = leadsArr.filter((lead) => lead.id === id);
-    const actualLeadData: FormData = {
-      id: actualLead[0].id,
-      username: actualLead[0].username,
-      email: actualLead[0].email,
-      tel: actualLead[0].tel,
-    };
-    setLeadData(actualLeadData);
-    setIsOpenView(true);
-  };
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-  const handleCloseViewModal = () => {
-    setIsOpenView(false);
-  };
-  isOpen || isOpenView ? (modalIsOpen = "hidden") : (modalIsOpen = "false");
+
+  isOpen ? (modalIsOpen = "hidden") : (modalIsOpen = "false");
 
   const handleInputChange = (name: string, value: string) => {
-    const newUuid = uuid();
     setFormData({
       ...formData,
-      id: newUuid,
       [name]: value,
     });
   };
@@ -91,8 +57,7 @@ export const LeadsListPage = () => {
 
   const handleSubmit = () => {
     if (formValidate() === true) {
-      setLeadsArr([...leadsArr, formData]);
-      localStorage.setItem("leadData", JSON.stringify([...leadsArr, formData]));
+      localStorage.setItem("leadData", JSON.stringify(formData));
     } else {
       console.error("Invalid lead information");
     }
@@ -110,17 +75,6 @@ export const LeadsListPage = () => {
           username={formData.username}
           email={formData.email}
           tel={formData.tel}
-        />
-      </ModalContainer>
-      <ModalContainer isOpen={isOpenView}>
-        <NewLeadForm
-          onCLickEvent={handleCloseViewModal}
-          cancelCLickEvent={handleCloseViewModal}
-          variants={"disabled"}
-          onInputChange={handleInputChange}
-          username={leadData.username}
-          email={leadData.email}
-          tel={leadData.tel}
         />
       </ModalContainer>
       <FlexContainer display={modalIsOpen}>
