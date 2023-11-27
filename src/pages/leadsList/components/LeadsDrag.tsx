@@ -2,10 +2,11 @@ import { useState } from "react";
 
 type LeadsDragProps = {
   name: string;
+  index: number;
   onClickEvent: () => void;
 };
 
-export const LeadsDrag = ({ name, onClickEvent }: LeadsDragProps) => {
+export const LeadsDrag = ({ name, index, onClickEvent }: LeadsDragProps) => {
   const [spanPosition, setSpanPosition] = useState(0);
 
   const handleDivClick = (index: number) => {
@@ -20,40 +21,55 @@ export const LeadsDrag = ({ name, onClickEvent }: LeadsDragProps) => {
     }
   };
 
+  const setItemStyle = (index: number): string => {
+    console.log("🚀 ~ file: LeadsDrag.tsx:25 ~ setItemStyle ~ index:", index);
+    return `flex border border-slate-300 ${
+      index % 2 === 0 ? "bg-gray-200" : "bg-white"
+    }`;
+  };
   return (
-    <div className="flex">
+    <div className={setItemStyle(index)}>
       <div
-        className={`flex-1 p-4 cursor-pointer hover:bg-slate-200 ${
-          spanPosition === 0 ? "bg-gray-300" : ""
+        className={`flex-1 p-4 cursor-pointer ${
+          spanPosition !== 0 ? "hover:bg-slate-300" : ""
         }`}
         onClick={() => handleDivClick(0)}
       >
         {spanPosition === 0 && (
-          <span className="w-2 mx-auto hover:underline" onClick={onClickEvent}>
+          <span
+            className="w-2 mx-auto hover:underline text-sm text-gray-800 font-semibold"
+            onClick={onClickEvent}
+          >
             {name}
           </span>
         )}
       </div>
       <div
-        className={`flex-1 p-4 cursor-pointer hover:bg-slate-200 ${
-          spanPosition === 1 ? "bg-gray-300" : ""
+        className={`flex-1 p-4 cursor-pointer ${
+          spanPosition !== 1 ? "hover:bg-slate-300" : ""
         }`}
         onClick={() => handleDivClick(1)}
       >
         {spanPosition === 1 && (
-          <span className="w-2 mx-auto hover:underline" onClick={onClickEvent}>
+          <span
+            className="w-2 mx-auto hover:underline text-sm text-gray-800 font-semibold"
+            onClick={onClickEvent}
+          >
             {name}
           </span>
         )}
       </div>
       <div
-        className={`flex-1 p-4 cursor-pointer hover:bg-slate-200 ${
-          spanPosition === 2 ? "bg-gray-300" : ""
+        className={`flex-1 p-4 cursor-pointer ${
+          spanPosition !== 2 ? "hover:bg-slate-300" : ""
         }`}
         onClick={() => handleDivClick(2)}
       >
         {spanPosition === 2 && (
-          <span className="w-2 mx-auto hover:underline" onClick={onClickEvent}>
+          <span
+            className="w-2 mx-auto hover:underline text-sm text-gray-800 font-semibold"
+            onClick={onClickEvent}
+          >
             {name}
           </span>
         )}

@@ -137,12 +137,15 @@ export const LeadsListPage = () => {
               <Button variants="newLead" onCLickEvent={handleOpenModal} />
             </div>
             <ListHeader />
-            {leadsList.map((lead: FormData) => (
-              <LeadsDrag
-                name={lead.username}
-                onClickEvent={() => handleOpenViewModal(lead.id)}
-              />
-            ))}
+            <div className="flex flex-col gap-1">
+              {leadsList.map((lead: FormData, index: number) => (
+                <LeadsDrag
+                  name={lead.username}
+                  index={index}
+                  onClickEvent={() => handleOpenViewModal(lead.id)}
+                />
+              ))}
+            </div>
           </main>
         </Container>
       </FlexContainer>
