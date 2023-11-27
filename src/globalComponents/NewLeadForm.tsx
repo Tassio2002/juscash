@@ -11,7 +11,7 @@ type NewLeadFormProps = {
   email: string;
   tel: string;
   onCLickEvent: () => void;
-  saveCLickEvent: () => void;
+  saveCLickEvent?: () => void;
   cancelCLickEvent: () => void;
   onInputChange: (name: string, value: string) => void;
 };
@@ -91,7 +91,7 @@ export const NewLeadForm = ({
         <FormContainer>
           <div className="w-full flex flex-col">
             <header className="flex justify-between">
-              <h1>Novo Lead</h1>
+              <h1>Lead</h1>
               <IoClose
                 width={24}
                 onClick={onCLickEvent}
@@ -106,11 +106,11 @@ export const NewLeadForm = ({
                   color="gray"
                   isRequired={true}
                 />
-                <FormInput type="text" isDisabled={true} />
+                <FormInput type="text" isDisabled={true} value={username} />
                 <FormLabel text="E-mail" color="gray" isRequired={true} />
-                <FormInput type="email" isDisabled={true} />
+                <FormInput type="email" isDisabled={true} value={email} />
                 <FormLabel text="Telefone" color="gray" isRequired={true} />
-                <FormInput type="tel" isDisabled={true} />
+                <FormInput type="tel" isDisabled={true} value={tel} />
               </div>
               <div>
                 <h2>Oportunidades</h2>
