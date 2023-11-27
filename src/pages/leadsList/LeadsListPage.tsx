@@ -68,10 +68,10 @@ export const LeadsListPage = () => {
   isOpen || isOpenView ? (modalIsOpen = "hidden") : (modalIsOpen = "false");
 
   const handleInputChange = (name: string, value: string) => {
-    const newUuid = uuid();
+    const setNewUuid = uuid();
     setFormData({
       ...formData,
-      id: newUuid,
+      id: setNewUuid,
       [name]: value,
     });
   };
