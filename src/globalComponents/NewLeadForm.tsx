@@ -91,7 +91,7 @@ export const NewLeadForm = ({
         <FormContainer>
           <div className="w-full flex flex-col">
             <header className="flex justify-between">
-              <h1>Lead</h1>
+              <h1>Novo Lead</h1>
               <IoClose
                 width={24}
                 onClick={onCLickEvent}
@@ -106,11 +106,11 @@ export const NewLeadForm = ({
                   color="gray"
                   isRequired={true}
                 />
-                <FormInput type="text" isDisabled={true} value={username} />
+                <FormInput type="text" isDisabled={true} />
                 <FormLabel text="E-mail" color="gray" isRequired={true} />
-                <FormInput type="email" isDisabled={true} value={email} />
+                <FormInput type="email" isDisabled={true} />
                 <FormLabel text="Telefone" color="gray" isRequired={true} />
-                <FormInput type="tel" isDisabled={true} value={tel} />
+                <FormInput type="tel" isDisabled={true} />
               </div>
               <div>
                 <h2>Oportunidades</h2>
