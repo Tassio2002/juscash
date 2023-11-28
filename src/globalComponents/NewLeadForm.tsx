@@ -106,11 +106,11 @@ export const NewLeadForm = ({
                   color="gray"
                   isRequired={true}
                 />
-                <FormInput type="text" isDisabled={true} />
+                <FormInput type="text" isDisabled={true} value={username} />
                 <FormLabel text="E-mail" color="gray" isRequired={true} />
-                <FormInput type="email" isDisabled={true} />
+                <FormInput type="email" isDisabled={true} value={email} />
                 <FormLabel text="Telefone" color="gray" isRequired={true} />
-                <FormInput type="tel" isDisabled={true} />
+                <FormInput type="tel" isDisabled={true} value={tel} />
               </div>
               <div>
                 <h2>Oportunidades</h2>
