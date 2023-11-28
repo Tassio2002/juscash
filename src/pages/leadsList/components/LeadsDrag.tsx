@@ -22,7 +22,6 @@ export const LeadsDrag = ({ name, index, onClickEvent }: LeadsDragProps) => {
   };
 
   const setItemStyle = (index: number): string => {
-    console.log("🚀 ~ file: LeadsDrag.tsx:25 ~ setItemStyle ~ index:", index);
     return `flex border border-slate-300 ${
       index % 2 === 0 ? "bg-gray-200" : "bg-white"
     }`;

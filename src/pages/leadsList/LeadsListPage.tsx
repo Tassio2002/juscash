@@ -33,10 +33,6 @@ export const LeadsListPage = () => {
     email: "",
     tel: "",
   });
-  console.log(
-    "🚀 ~ file: LeadsListPage.tsx:36 ~ LeadsListPage ~ leadData:",
-    leadData
-  );
 
   const [leadsArr, setLeadsArr] = useState<FormData[]>([]);
   const getLeads = localStorage.getItem("leadData");
