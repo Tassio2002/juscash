@@ -16,14 +16,14 @@ export const Button = ({
     signup: {
       text: "Criar conta",
       style: "bg-green-500 text-white font-bold",
-      actualHref: "/",
-      hrefToNavigate: "/login",
+      actualHref: "/juscash",
+      hrefToNavigate: "/juscash/login",
     },
     login: {
       text: "Entrar",
       style: "bg-green-500 text-white font-bold",
-      actualHref: "/login",
-      hrefToNavigate: "/leads",
+      actualHref: "/juscash/login",
+      hrefToNavigate: "/juscash/leads",
     },
     newLead: {
       text: "Novo Lead",

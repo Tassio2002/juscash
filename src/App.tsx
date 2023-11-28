@@ -5,11 +5,12 @@ import { LoginPage } from "./pages/login/LoginPage";
 import { SignupPage } from "./pages/signup/SignupPage";
 
 function App() {
+  const basePath = "/juscash"
   return (
     <div className="bg-slate-500">
-      <Route path="/" component={SignupPage}/>
-      <Route path="/login" component={LoginPage}/>
-      <Route path="/leads" component={LeadsListPage}/>
+      <Route path={`${basePath}`} component={SignupPage}/>
+      <Route path={`${basePath}/login`} component={LoginPage}/>
+      <Route path={`${basePath}/leads`} component={LeadsListPage}/>
     </div>
   );
 }
