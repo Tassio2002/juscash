@@ -9,6 +9,9 @@ import validatePassword from "../../services/validatePassword";
 import validateConfirmPassword from "../../services/validateConfirmPassword";
 import validateUsername from "../../services/validateUsername";
 import validateEmail from "../../services/validateEmail";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import notifyError from "../../services/showErrorToast";
 
 interface FormData {
   username: string;
@@ -63,8 +66,9 @@ export function SignupPage() {
   const handleSubmit = () => {
     if (formValidate() === true) {
       localStorage.setItem("userData", JSON.stringify(formData));
+    } else {
+      notifyError("Dados Inválidos");
     }
-    console.error("Invalid confirm password");
   };
 
   return (
@@ -98,6 +102,7 @@ export function SignupPage() {
           />
         </footer>
       </FormContainer>
+      <ToastContainer />
     </FlexContainer>
   );
 }
